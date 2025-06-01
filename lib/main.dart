@@ -1,8 +1,5 @@
-// main.dart
 import 'package:flutter/material.dart';
-import 'package:smart_personal_finance_app/logo_screen.dart';
-// ignore: duplicate_import
-import 'logo_screen.dart'; // 👈 Importing your logo screen
+import 'logo_screen.dart';  // Apne LogoScreen ko import karo
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LogoScreen(),  // 👈 Directly loading your logo screen
+      home: LogoScreen(),  // App start yahi se hota hai
     );
   }
 }

@@ -1,18 +1,40 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: deprecated_member_use
 
-class LogoScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'login_page.dart';
+
+class LogoScreen extends StatefulWidget {
   const LogoScreen({super.key});
+
+  @override
+  State<LogoScreen> createState() => _LogoScreenState();
+}
+
+class _LogoScreenState extends State<LogoScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    // 3 seconds ke baad LoginPage pe navigate karna
+    Timer(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFF00Aaff), 
-              Color(0xFF00BFFF), 
-              Color(0xFF008080), 
+              Color(0xFF00Aaff),
+              Color(0xFF00BFFF),
+              Color(0xFF008080),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -22,22 +44,21 @@ class LogoScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Container(
+              Container(
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      // ignore: deprecated_member_use
-                      color: Colors.white.withOpacity(0.3), // Soft blur effect
-                      blurRadius: 12.0, // Adjust blur intensity
+                      color: Colors.white.withOpacity(0.3),
+                      blurRadius: 12.0,
                       spreadRadius: 3.0,
                     ),
                   ],
                   border: Border.all(
-                    color: Color(0xFF00Aaff), // Light grey border
-                    width: 2, // Thin border
+                    color: Color(0xFF00Aaff),
+                    width: 2,
                   ),
                 ),
                 child: const Center(
@@ -45,14 +66,13 @@ class LogoScreen extends StatelessWidget {
                     '₹',
                     style: TextStyle(
                       fontSize: 80,
-                      color: Color(0xFF1A237E), // Dark blue rupee
+                      color: Color(0xFF1A237E),
                       fontWeight: FontWeight.normal,
                     ),
                   ),
                 ),
               ),
               const SizedBox(height: 30),
-              // App Name
               const Column(
                 children: [
                   Text(
@@ -74,12 +94,11 @@ class LogoScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              // Tagline
-              Text(
+              const Text(
                 'Track Smart. Grow Faster',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black, // black
+                  color: Colors.black,
                   fontStyle: FontStyle.italic,
                 ),
               ),
