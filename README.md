@@ -32,18 +32,21 @@ Allows users to create a new account by entering their name, email, password, an
 
 ### 🔹 Logo Screen
 ![Logo Screen](https://github.com/MMuusskkaann/Smart-Personal-Finance-Manager-App/blob/ccaf9f5a6673e8a6d8f65db97a93e70a42573132/screenshots/starting%20page.png)
+
 This is the splash screen that appears when the app launches. It shows the app branding for a few seconds before moving to the login screen.
 
 ---
 
 ### 🔹 Login Page
 ![Login Page](https://github.com/MMuusskkaann/Smart-Personal-Finance-Manager-App/blob/9b024d772a463ac77d3c6bceaa3fa4863d1ece94/screenshots/Login_page.png)
+
 Users can enter their email and password to log in. There's also a clear button to reset fields, and an option to go to the Create Account screen (to be developed).
 
 ---
 
 ### 🔹 Register Page
-![Register Page](screenshots/register.png)
+![Register Page](https://github.com/MMuusskkaann/Smart-Personal-Finance-Manager-App/blob/456a22af380f60a44ef4f4f3ebf46e4e99f970ad/screenshots/Register_page.png)
+
 Users can create a new account by entering their name, email, password, and confirm password. Password visibility toggle and validation messages are included.
 
 ## 📂 Project Structure (so far)
