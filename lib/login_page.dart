@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_personal_finance_app/Register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,11 +9,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // Controllers for email and password input fields
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  // Dispose controllers when widget is removed from the widget tree
+  bool _isPasswordVisible = false; // show/hide password toggle
+  bool _isLoading = false; // for showing loading spinner
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -20,55 +22,82 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  // Function to handle login logic
   void _login() {
-    final email = _emailController.text;
+    final email = _emailController.text.trim();
     final password = _passwordController.text;
 
-    // Check if email or password is empty
+    // Basic validations
     if (email.isEmpty || password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter email and password')),
-      );
+      _showSnackbar("Please enter both email and password.");
       return;
     }
 
-    // Show a simple success message
+    // Email format check (very basic)
+    if (!email.contains('@') || !email.contains('.')) {
+      _showSnackbar("Please enter a valid email address.");
+      return;
+    }
+
+    if (password.length < 6) {
+      _showSnackbar("Password should be at least 6 characters.");
+      return;
+    }
+
+    // Simulating login process
+    setState(() {
+      _isLoading = true;
+    });
+
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        _isLoading = false;
+      });
+
+      _showSnackbar("Logged in as $email");
+    });
+  }
+
+  void _showSnackbar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Logging in with $email')),
+      SnackBar(content: Text(message)),
     );
   }
 
-  // Function to clear the input fields
   void _clear() {
     _emailController.clear();
     _passwordController.clear();
   }
 
+  void _navigateToCreateAccount() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const RegisterPage()),
+    );
+  }
+
+  void _forgotPassword() {
+    _showSnackbar("Password reset functionality coming soon!");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Center aligns the entire column vertically and horizontally
       body: Center(
-        child: Padding(
+        child: SingleChildScrollView( // Taaki keyboard khulne pe scroll ho
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Page title
               const Text(
                 'Login Page',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(height: 30),
 
-              // Email input field
               TextField(
                 controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
@@ -78,38 +107,80 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 20),
 
-              // Password input field
               TextField(
                 controller: _passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
+                obscureText: !_isPasswordVisible,
+                decoration: InputDecoration(
                   labelText: 'Password',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock),
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                  ),
                 ),
               ),
 
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
 
-              // Login and Clear buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: _login,
-                    child: const Text('Login'),
-                  ),
-                  ElevatedButton(
-                    onPressed: _clear,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey,
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: _forgotPassword,
+                  child: const Text('Forgot Password?'),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              _isLoading
+                  ? const CircularProgressIndicator()
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: _login,
+                          child: const Text('Login'),
+                        ),
+                        ElevatedButton(
+                          onPressed: _clear,
+                          child: const Text('Clear'),
+                        ),
+                      ],
                     ),
-                    child: const Text('Clear'),
-                  ),
-                ],
+
+              const SizedBox(height: 20),
+
+              TextButton(
+                onPressed: _navigateToCreateAccount,
+                child: const Text('Create Account'),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class CreateAccountPage extends StatelessWidget {
+  const CreateAccountPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Create Account')),
+      body: const Center(
+        child: Text(
+          'Yeh "Create Account" page hai.\nYahan se registration form banega.',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 20),
         ),
       ),
     );

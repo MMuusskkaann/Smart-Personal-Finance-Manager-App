@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'logo_screen.dart';  // Apne LogoScreen ko import karo
+import 'login_page.dart';
+import 'register_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +11,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LogoScreen(),  // App start yahi se hota hai
+      title: 'Smart Finance App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      
+      //  Starting page
+      initialRoute: '/login',
+
+      //  Named routes
+      routes: {
+        '/login': (context) => const LoginPage(),
+        '/register': (context) => const RegisterPage(),
+      },
     );
   }
 }
