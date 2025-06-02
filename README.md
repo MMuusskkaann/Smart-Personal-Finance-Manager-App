@@ -31,13 +31,13 @@ Allows users to create a new account by entering their name, email, password, an
 ## 📱 Screens
 
 ### 🔹 Logo Screen
-![Logo Screen]()
+![Logo Screen](https://github.com/MMuusskkaann/Smart-Personal-Finance-Manager-App/blob/ccaf9f5a6673e8a6d8f65db97a93e70a42573132/screenshots/starting%20page.png)
 This is the splash screen that appears when the app launches. It shows the app branding for a few seconds before moving to the login screen.
 
 ---
 
 ### 🔹 Login Page
-![Login Page](screenshots/login.png)
+![Login Page](screenshots/login.pn)
 Users can enter their email and password to log in. There's also a clear button to reset fields, and an option to go to the Create Account screen (to be developed).
 
 ---
