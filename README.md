@@ -28,6 +28,24 @@ Allows users to create a new account by entering their name, email, password, an
 
 ---
 
+## 📱 Screens
+
+### 🔹 Logo Screen
+![Logo Screen]()
+This is the splash screen that appears when the app launches. It shows the app branding for a few seconds before moving to the login screen.
+
+---
+
+### 🔹 Login Page
+![Login Page](screenshots/login.png)
+Users can enter their email and password to log in. There's also a clear button to reset fields, and an option to go to the Create Account screen (to be developed).
+
+---
+
+### 🔹 Register Page
+![Register Page](screenshots/register.png)
+Users can create a new account by entering their name, email, password, and confirm password. Password visibility toggle and validation messages are included.
+
 ## 📂 Project Structure (so far)
 
 - `lib/main.dart` — app entry point and routing setup  
