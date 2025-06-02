@@ -37,7 +37,7 @@ This is the splash screen that appears when the app launches. It shows the app b
 ---
 
 ### 🔹 Login Page
-![Login Page](screenshots/login.pn)
+![Login Page](https://github.com/MMuusskkaann/Smart-Personal-Finance-Manager-App/blob/9b024d772a463ac77d3c6bceaa3fa4863d1ece94/screenshots/Login_page.png)
 Users can enter their email and password to log in. There's also a clear button to reset fields, and an option to go to the Create Account screen (to be developed).
 
 ---
