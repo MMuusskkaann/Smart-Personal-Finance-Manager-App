@@ -46,6 +46,8 @@ Users can enter their email and password to log in. There's also a clear button 
 
 ### 🔹 Register Page
 ![Register Page](https://github.com/MMuusskkaann/Smart-Personal-Finance-Manager-App/blob/456a22af380f60a44ef4f4f3ebf46e4e99f970ad/screenshots/Register_page.png)
+
+updated Register page
 ![Register Page](https://github.com/MMuusskkaann/Smart-Personal-Finance-Manager-App/blob/d792df7a37305a79599928d62e8dff80a6f68885/Screenshot%202025-06-03%20040341.png)
 
 
