@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smart_personal_finance_app/Register_page.dart';
+// ignore: unused_import
+import 'register_page.dart';
+import 'user_data.dart';  // Import user data singleton
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,8 +14,8 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  bool _isPasswordVisible = false; // show/hide password toggle
-  bool _isLoading = false; // for showing loading spinner
+  bool _isPasswordVisible = false;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -26,13 +28,11 @@ class _LoginPageState extends State<LoginPage> {
     final email = _emailController.text.trim();
     final password = _passwordController.text;
 
-    // Basic validations
     if (email.isEmpty || password.isEmpty) {
       _showSnackbar("Please enter both email and password.");
       return;
     }
 
-    // Email format check (very basic)
     if (!email.contains('@') || !email.contains('.')) {
       _showSnackbar("Please enter a valid email address.");
       return;
@@ -43,17 +43,21 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
-    // Simulating login process
     setState(() {
       _isLoading = true;
     });
 
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         _isLoading = false;
       });
 
-      _showSnackbar("Logged in as $email");
+      bool loggedIn = UserData().loginUser(email, password);
+      if (loggedIn) {
+        _showSnackbar("Logged in successfully!");
+      } else {
+        _showSnackbar("User not found or wrong password.");
+      }
     });
   }
 
@@ -69,10 +73,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _navigateToCreateAccount() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const RegisterPage()),
-    );
+    Navigator.pushNamed(context, '/register');
   }
 
   void _forgotPassword() {
@@ -83,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SingleChildScrollView( // Taaki keyboard khulne pe scroll ho
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -92,9 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                 'Login Page',
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
-
               const SizedBox(height: 30),
-
               TextField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -104,9 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: Icon(Icons.email),
                 ),
               ),
-
               const SizedBox(height: 20),
-
               TextField(
                 controller: _passwordController,
                 obscureText: !_isPasswordVisible,
@@ -126,9 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 10),
-
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -136,9 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: const Text('Forgot Password?'),
                 ),
               ),
-
               const SizedBox(height: 20),
-
               _isLoading
                   ? const CircularProgressIndicator()
                   : Row(
@@ -154,33 +147,13 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-
               const SizedBox(height: 20),
-
               TextButton(
                 onPressed: _navigateToCreateAccount,
                 child: const Text('Create Account'),
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class CreateAccountPage extends StatelessWidget {
-  const CreateAccountPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Create Account')),
-      body: const Center(
-        child: Text(
-          'Yeh "Create Account" page hai.\nYahan se registration form banega.',
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 20),
         ),
       ),
     );

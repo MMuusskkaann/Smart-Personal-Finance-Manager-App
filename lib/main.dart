@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'register_page.dart';
+import 'logo_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
 
       //  Named routes
       routes: {
+        '/': (context) => const LogoScreen(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
       },
