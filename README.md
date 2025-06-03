@@ -46,6 +46,8 @@ Users can enter their email and password to log in. There's also a clear button 
 
 ### 🔹 Register Page
 ![Register Page](https://github.com/MMuusskkaann/Smart-Personal-Finance-Manager-App/blob/456a22af380f60a44ef4f4f3ebf46e4e99f970ad/screenshots/Register_page.png)
+![Register Page]()
+
 
 Users can create a new account by entering their name, email, password, and confirm password. Password visibility toggle and validation messages are included.
 
