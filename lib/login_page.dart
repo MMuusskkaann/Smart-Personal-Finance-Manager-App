@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'register_page.dart';
-import 'user_data.dart';  // Import user data singleton
+import 'user_data.dart';  // Singleton for storing user data
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -55,6 +53,14 @@ class _LoginPageState extends State<LoginPage> {
       bool loggedIn = UserData().loginUser(email, password);
       if (loggedIn) {
         _showSnackbar("Logged in successfully!");
+
+        // Navigate to Dashboard with username (email)
+        Navigator.pushNamed(
+          // ignore: use_build_context_synchronously
+          context,
+          '/dashboard',               // Correct route name here
+          arguments: {'userName': email},  // Pass as Map
+        );
       } else {
         _showSnackbar("User not found or wrong password.");
       }

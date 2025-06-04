@@ -58,9 +58,15 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    // If all validations pass, show success for now
+    // If all validations pass, show success and navigate to Dashboard
     _showSnackBar("Registered successfully as $firstName $lastName");
 
+    // Navigate to Dashboard and pass userName argument
+    Navigator.pushReplacementNamed(
+      context,
+      '/dashboard',
+      arguments: {'userName': '$firstName $lastName'},
+    );
   }
 
   void _showSnackBar(String message) {

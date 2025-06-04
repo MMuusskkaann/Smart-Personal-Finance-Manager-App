@@ -1,8 +1,5 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'login_page.dart';
 
 class LogoScreen extends StatefulWidget {
   const LogoScreen({super.key});
@@ -16,12 +13,9 @@ class _LogoScreenState extends State<LogoScreen> {
   void initState() {
     super.initState();
 
-    // 3 seconds ke baad LoginPage pe navigate karna
+    // ✅ Navigate using named route after 5 seconds
     Timer(const Duration(seconds: 5), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
+      Navigator.pushReplacementNamed(context, '/login');
     });
   }
 
@@ -51,6 +45,7 @@ class _LogoScreenState extends State<LogoScreen> {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
+                      // ignore: deprecated_member_use
                       color: Colors.white.withOpacity(0.3),
                       blurRadius: 12.0,
                       spreadRadius: 3.0,

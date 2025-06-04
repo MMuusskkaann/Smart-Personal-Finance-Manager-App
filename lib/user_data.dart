@@ -20,4 +20,6 @@ class UserData {
   bool loginUser(String email, String password) {
     return _users[email] == password;
   }
+
+  logoutUser() {}
 }
