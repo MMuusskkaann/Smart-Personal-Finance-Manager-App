@@ -1,91 +1,51 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DashboardPage  extends StatefulWidget{
+import 'Appbaraction.dart';
+import 'slidemanu.dart';
+
+class DashboardPage  extends StatelessWidget{
   const DashboardPage({super.key});
 
   @override
-  State<DashboardPage> createState() => _DashboardState();
-}
+  Widget build(BuildContext context) {
+    // SizeConfig().init(context);
+      return Scaffold(
+        body: SafeArea(
+          child: Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: SlideManu()
+              ),
 
-class _DashboardState extends State<DashboardPage>{
-  final double defaultPadding = 16.0;
-  int selectedSegment = 0;
+              Expanded(
+                flex: 10,
+                // ignore: sized_box_for_whitespace
+                child: Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,  
+                // color: Colors.blueGrey[100], 
+                )
+              ),
 
-   final Map<int, Widget> myTabs = const {
-    0: Text("Buy Crypto", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-    1: Text("Trading", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-    2: Text("Statistics", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-    3: Text("Finances", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-    4: Text("Reports", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-    5: Text("Cash Flow", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-  };
-
-      @override
-      Widget build(BuildContext context){
-        return Scaffold(
-          body: Container(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              children: [
-                CupertinoSegmentedControl<int>(
-                  children: myTabs,
-                  groupValue: selectedSegment,
-                  onValueChanged: (int value){
-                    setState(() {
-                      
-                      selectedSegment = value;
-                    });
-                  },
-                  
-                  
-                  borderColor: Colors.black,
-                  selectedColor: Colors.black,
-                  unselectedColor: Colors.white,
-                  // ignore: deprecated_member_use
-                  pressedColor: Colors.cyanAccent.withOpacity(0.2),
-                  ),
-                  SizedBox(height: 20),
-                  Text('Selected Tab: ${myTabs[selectedSegment]}')
-              ]
-            ),
+              Expanded(
+                flex: 4,
+                // ignore: sized_box_for_whitespace
+                child: Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,  
+                color: Colors.white70,
+                padding: EdgeInsets.symmetric(vertical: 30.0,horizontal: 30.0),
+                child: Column(
+                  children: [
+                     appbaractionwork()
+                  ],
+                 ),
+                )
+              ),
+            ],
           ),
-        );
-      }
-}
-
-class MaterialsegmentControl {
-  int segmentcontrolGroupValue = 3;
-  final Map<int,Widget> myTabs = const<int,Widget>{
-    0 : Text(
-      "Buy Crypto",
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-    ),
-
-    1 : Text(
-      "Rrading",
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-    ),
-
-    2 : Text(
-      "Statistics",
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-    ),
-
-    3 : Text(
-      "Finances",
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-    ),
-
-    4 : Text(
-      "Reports",
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-    ),
-
-    5: Text(
-      "Cash flow",
-      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-    ),
-  };
+        ),
+      );
+  }
 }
