@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_personal_finance_app/size_config.dart';
 import 'Appbaraction.dart';
+import 'paymentDetailList.dart';
 import 'slidemanu.dart';
 
 class DashboardPage  extends StatelessWidget{
@@ -34,35 +35,64 @@ class DashboardPage  extends StatelessWidget{
                 child: Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,  
-                color: Colors.white70,
+                // ignore: deprecated_member_use
+                color: Colors.grey.withOpacity(0.1),
                 padding: EdgeInsets.symmetric(vertical: 30.0,horizontal: 30.0),
                 child: Column(
                   children: [
                      appbaractionwork(),
-                     Column(
-                      children: [
-                        SizedBox(height: SizeConfig.blockSizedVertical * 5,
-                        ),
-                        Container(
+                     paymentDetailList(),
+                    //  SizedBox(height: ,)
+                  Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30.0),
                             boxShadow: [BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 15.0,
-                              offset: const Offset(10.0, 15.0)
-                            )]
-                          ),
-                          child: Image.network('https://in.images.search.yahoo.com/search/images;_ylt=Awrx.RtWiERoawIAgea7HAx.;_ylu=Y29sbwNzZzMEcG9zAzEEdnRpZAMEc2VjA3BpdnM-?p=credit+card&fr2=piv-web&type=E210IN885G0&fr=mcafee#id=24&iurl=https%3A%2F%2Fpngimg.com%2Fuploads%2Fcredit_card%2Fcredit_card_PNG204.png&action=click'),
-                        )
-                      ],
-                     )
-                  ],
+                              // ignore: deprecated_member_use
+                              color: Colors.grey.withOpacity(0.9),
+                              // blurRadius: 15.0,
+                              offset: const Offset(5,5),
+                              blurRadius: 8,
+                              spreadRadius: 0,
+                            ),
+                          ]
+                        ),
+                       child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30.0),
+                        child: Image.network(
+                          'https://pngimg.com/uploads/credit_card/credit_card_PNG204.png',
+                          width: 300,
+                          height: 200,
+                          fit: BoxFit.contain,
+                          loadingBuilder: (BuildContext context, Widget child,
+                              ImageChunkEvent? loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value: loadingProgress.expectedTotalBytes != null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            );
+                          },
+                      errorBuilder: (context, error, stackTrace) {
+                            return const Center(
+                              child: Text(
+                                'Image failed to load',
+                                style: TextStyle(color: Colors.red),    
+                     ),
+                    );
+                  },
                  ),
                 )
               ),
             ],
           ),
         ),
-      );
+       ),
+      ],
+    ),
+    ),
+   );
   }
 }
