@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:smart_personal_finance_app/paymentDetailList.dart';
 import 'package:smart_personal_finance_app/size_config.dart';
 import 'Appbaraction.dart';
-import 'paymentDetailList.dart';
 import 'slidemanu.dart';
 
 class DashboardPage  extends StatelessWidget{
@@ -41,51 +41,7 @@ class DashboardPage  extends StatelessWidget{
                 child: Column(
                   children: [
                      appbaractionwork(),
-                     paymentDetailList(),
-                    //  SizedBox(height: ,)
-                  Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30.0),
-                            boxShadow: [BoxShadow(
-                              // ignore: deprecated_member_use
-                              color: Colors.grey.withOpacity(0.9),
-                              // blurRadius: 15.0,
-                              offset: const Offset(5,5),
-                              blurRadius: 8,
-                              spreadRadius: 0,
-                            ),
-                          ]
-                        ),
-                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30.0),
-                        child: Image.network(
-                          'https://pngimg.com/uploads/credit_card/credit_card_PNG204.png',
-                          width: 300,
-                          height: 200,
-                          fit: BoxFit.contain,
-                          loadingBuilder: (BuildContext context, Widget child,
-                              ImageChunkEvent? loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Center(
-                              child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes != null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes!
-                                    : null,
-                              ),
-                            );
-                          },
-                      errorBuilder: (context, error, stackTrace) {
-                            return const Center(
-                              child: Text(
-                                'Image failed to load',
-                                style: TextStyle(color: Colors.red),    
-                     ),
-                    );
-                  },
-                 ),
-                )
-              ),
+                     PaymentDetailList(),
             ],
           ),
         ),
