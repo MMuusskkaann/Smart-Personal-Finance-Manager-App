@@ -4,25 +4,27 @@ class PrimaryText extends StatelessWidget {
   final String text;
   final double size;
   final FontWeight fontWeight;
-  final Color? color;
+  final Color color;
+  final TextAlign textAlign;
 
-  // ignore: use_super_parameters
   const PrimaryText({
-    Key? key,
+    super.key,
     required this.text,
     required this.size,
     required this.fontWeight,
-    this.color, required TextAlign textAlign,
-  }) : super(key: key);
+    required this.color,
+    required this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: TextStyle(
         fontSize: size,
         fontWeight: fontWeight,
-        color: color ?? Colors.black,
+        color: color,
       ),
     );
   }
